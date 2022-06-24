@@ -6,26 +6,53 @@ function incluirUmaLinha(){
     let deficit = meta -produzido
 
     // montar a linha da tabela
-    let linhaNova = `<td>${produto}</td>`
+    let linhaNova = `<tr><td>${produto}</td>`
     linhaNova += `<td>${produzido}</td>`
     linhaNova += `<td>${meta}</td>`
     linhaNova += `<td>${deficit}</td>`
-    linhaNova += `<td><button class="excluirLinha">Excluir</button>`
-    document.getElementById("controle-producao").innerHTML = linhaNova
+    linhaNova += `<td><button class="excluirLinha btn red" onclick="excluirUmaLinha("this")>Excluir</button><td></tr>`
+    document.getElementById("controle-producao").innerHTML += linhaNova
+}
+function limpar(){
+    document.getElementById("produto").value = ""
+    document.getElementById("produzido").value = ""
+    document.getElementById("meta").value = 25
+
 }
 
-function salvar(){
+let btSalvar = document.getElementById("salvar")
+btSalvar.addEventListener("click",function(){
+    incluirUmaLinha()
+    limpar()
+    salvar()
 
+})
+function salvar(){
+    localStorage.controleProducao = document.getElementById("controle-producao").innerHTML
 }
 
 function excluirTudo(){
-
+    localStorage.clear()
+    document.getElementById("controle-producao").innerHTML = ""
 }
 
-function excluirUmaLinha(){
+btLimpar = document.getElementById("limpar")
+btLimpar.addEventListener("click",function(){
+    excluirTudo()
+})
+
+function excluirUmaLinha(botao){
+    botao.parentNode.parentNode.remove()
+    salvar()
 
 }
 
 function carregar(){
-
+    if(localStorage.controleProducao){
+        document.getElementById("controle-producao").innerHTML = localStorage.controleProducao
+    }
 }
+
+window.addEventListener("load",function(){
+    carregar()
+})

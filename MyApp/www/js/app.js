@@ -3,14 +3,14 @@ function incluirUmaLinha(){
     let produto = document.getElementById("produto").value
     let produzido = document.getElementById("produzido").value
     let meta = document.getElementById("meta").value
-    let deficit = meta -produzido
+    let deficit = meta - produzido
 
     // montar a linha da tabela
     let linhaNova = `<tr><td>${produto}</td>`
     linhaNova += `<td>${produzido}</td>`
     linhaNova += `<td>${meta}</td>`
     linhaNova += `<td>${deficit}</td>`
-    linhaNova += `<td><button class="excluirLinha btn red" onclick="excluirUmaLinha("this")>Excluir</button><td></tr>`
+    linhaNova += `<td><button class="excluirLinha btn red" onclick="excluirUmaLinha(this)">Excluir</button><td></tr>`
     document.getElementById("controle-producao").innerHTML += linhaNova
 }
 function limpar(){

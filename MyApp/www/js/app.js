@@ -29,6 +29,7 @@ btSalvar.addEventListener("click",function(){
 })
 function salvar(){
     localStorage.controleProducao = document.getElementById("controle-producao").innerHTML
+    navigator.vibrate(3000)
 }
 
 function excluirTudo(){
